@@ -1,0 +1,11 @@
+/data/mvtec
+/data/P_Dataset
+/data
+/dataset/
+/models/alexnet/hub/
+/models/
+/weights/
+/pretrained/
+/mtd_train_filenames.txt
+/FrEIA_github/
+/neptuneparams.py

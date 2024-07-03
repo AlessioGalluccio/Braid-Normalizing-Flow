@@ -7,8 +7,7 @@ from utils import *
 import itertools
 import sys
 
-thres_computed = [  [1.081576 ,1.2097787,1.1954566,1.2057903,1.2090586,1.1940093],
-                    [ 1.0529448,1.0411555,1.05305,1.1042804,1.1325476,1.0724558 ]]
+thres_computed = []
 def read_CSV(path):
     try:
         df = pd.read_csv(path)

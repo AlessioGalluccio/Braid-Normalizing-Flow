@@ -10,10 +10,10 @@ seed = 42
 # neptune
 neptune_activate = False
 # data settings
-from_tire_dataset = False
+from_object_dataset = False
 dataset_path = "data_splitted/copertoni/"
-class_name = "tire_split"
-modelname = "tire_model"
+class_name = "object_split"
+modelname = "object_model"
 pre_extracted = False  # were feature preextracted with extract_features?
 
 img_size = (256, 256)  # dimage size of highest scale, others are //2, //4
@@ -56,7 +56,7 @@ meta_epochs = 100  # total epochs = meta_epochs * sub_epochs
 sub_epochs = 1  # evaluate after this number of epochs
 
 load_previous_weight = False
-weight_location = "weights/tire_model9999.pth"
+weight_location = "weights/object_model9999.pth"
 
 #sidelight options
 use_sidelight = True

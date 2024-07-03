@@ -9,7 +9,7 @@ import random
 import config as c
 from train import train, train_multi_model
 from utils import load_datasets, make_dataloaders
-from tiredatasetscript import *
+from objectdatasetscript import *
 import os
 from utils import *
 

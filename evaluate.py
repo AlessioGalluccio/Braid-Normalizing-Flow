@@ -204,6 +204,6 @@ train_set, test_set, _ = load_datasets(c.dataset_path, c.class_name)
 img_paths = test_set.paths if c.pre_extracted else [p for p, l in test_set.samples]
 _, test_loader, _ = make_dataloaders(train_set, test_set, None)
 #mod = load_model(c.modelname)
-mod, _ , _ = load_weights("weights/tire_model5.pth")
+mod, _ , _ = load_weights("weights/object_model5.pth")
 mod.eval()
 evaluate(mod, test_loader)

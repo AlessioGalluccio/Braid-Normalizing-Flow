@@ -15,7 +15,7 @@ import shutil
 import pandas as pd
 import itertools
 
-from tiredatasetscript import get_mask_patch
+from objectdatasetscript import get_mask_patch
 
 os.environ['TORCH_HOME'] = 'models\\net'
 train_set, test_set, validation_set = load_datasets(c.dataset_path, c.class_name)
@@ -101,7 +101,7 @@ def pixel_auroc(maps,img_paths):
     pixel_scores = list()
     print("Computing pixel AUROC...")
     for i in tqdm(range(len(maps))):
-        mask_image_location = os.path.join("data_splitted/copertoni/tire_split/masks", '/'.join(img_paths[i].split('/')[-2:]))
+        mask_image_location = os.path.join("data_splitted/copertoni/object_split/masks", '/'.join(img_paths[i].split('/')[-2:]))
         if c.use_patches:
             hor, ver = patch_coordinates_from_name(mask_image_location)
             mask_image_location = original_name_from_patch(mask_image_location)
@@ -194,7 +194,7 @@ def plot_elements(maps, labels, img_paths, classificated_as, anomaly_score, tag_
             0, 0]
         #import mask of the image
         #try:
-        mask_image_location = os.path.join("data_splitted/copertoni/tire_split/masks", '/'.join(img_paths[i].split('/')[-2:]))
+        mask_image_location = os.path.join("data_splitted/copertoni/object_split/masks", '/'.join(img_paths[i].split('/')[-2:]))
         if c.use_patches:
             hor, ver = patch_coordinates_from_name(mask_image_location)
             mask_image_location = original_name_from_patch(mask_image_location)
@@ -488,8 +488,4 @@ def inspect_images(model_weights_path, image_loader, image_set):
 
     return
 
-
-
-#inspect_images("weights/tire_model5.pth",validation_loader, validation_set, threshold=1.593)
-#inspect_images("exps-samele/tire_model9999_braid_multimodel_rad1_rad2_diff.pth",validation_loader, validation_set)
-inspect_images("exps-samele/tire_model9999_braid_multimodel_rad1_rad2_diff.pth",test_loader, test_set)
+inspect_images("model.pth",test_loader, test_set)

@@ -14,13 +14,13 @@ import shutil
 import pandas as pd
 import itertools
 
-from tiredatasetscript import get_mask_patch
+from objectdatasetscript import get_mask_patch
 
 c.batch_size = 1
 
 
 
-model_weights_path = "weights/tire_model9999.pth"
+model_weights_path = "weights/object_model9999.pth"
 os.environ['TORCH_HOME'] = 'models\\net'
 train_set, test_set, validation_set = load_datasets(c.dataset_path, c.class_name)
 if c.use_sidelight:

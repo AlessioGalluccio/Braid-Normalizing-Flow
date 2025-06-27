@@ -1,29 +1,28 @@
 # Braid-Normalizing-Flow
-Braid Normalizing Flows is a model of Anomaly Detection of images based of CS-Flow that uses a triplet of images to train. This is useful if we want to use sidelight images of an object during the training.
-
+A novel anomaly detection architecture for multi-view image analysis, extending CS-Flow to leverage triplet training with sidelight images. Developed as part of graduate thesis work on generative computer vision for industrial defect detection.
 ![plot](braid-normalizing-flows-architecture.jpg)
 
-I chose to call it Braid Normalizing
- Flow because the structure vaguely remembers the process of making a braid: there are
- three branches that are combined following a rotation sequence of actions. The input
- of the architecture is the same as the CS-Flow with sidelight images, a concatenation
- of the tensors of features of the three resize and the three types of images. The input,
- however, is immediately separated in three blocks, that are named 0, 1, and 2. Block 0
- contains the three tensors of features of the three resize of the diffuse image. Blocks 1 and
- 2 contain the same, but respectively from the sidelight image 1 and the sidelight image
- 2 . We select blocks 0 and 1, we concatenate them, and we pass them to CSF0, which is
- a CS-Flow coupling flow. Since all the permutation layers are deactivated, we are certain
- that the output maintains the feature order of the input. The net separates again the
- output in the two blocks. In CSF1, blocks 1 obtained from CSF0 and blocks 2, which is
- still unchanged, are used as input. CSF2 takes blocks 0 from CSF0 and blocks 2 from
- CSF1 as inputs. Finally, blocks 0, 1, and 2 are concatenated and returned as output by
- the braid normalizing flow. In this sequence, each block interacts with every other block
- before being returned as output and each CS-Flow learns its own parameters. These
- interactions mimic the comparison of an expert analyzing the three different images to
- spot the anomalies.
+Overview
+Braid Normalizing Flow processes three synchronized images (one diffuse + two sidelight) to detect anomalies by modeling normal data distribution. The "braid" architecture ensures each image representation interacts with the others before final anomaly scoring, mimicking expert visual inspection workflows.
+Architecture
+The model splits input features into three blocks (diffuse, sidelight1, sidelight2) and processes them through a sequence of CS-Flow coupling layers:
 
+CSF0: Processes diffuse + sidelight1 features
+CSF1: Processes sidelight1 (from CSF0) + sidelight2 features
+CSF2: Processes diffuse (from CSF0) + sidelight2 (from CSF1) features
 
-This project was created thanks to the WACV 2022 paper "Fully Convolutional Cross-Scale-Flows for Image-based Defect Detection" by Marco Rudolph, Tom Wehrbein, Bodo Rosenhahn and Bastian Wandt. (https://github.com/marco-rudolph/cs-flow)
+This rotation ensures every block pair interacts exactly once, enabling comprehensive multi-view anomaly detection.
+Key Features
+
+Multi-view anomaly detection using synchronized camera inputs
+Maintains feature ordering through deactivated permutation layers
+Independent parameter learning for each coupling flow
+Industrial applicability for quality control scenarios
+
+Applications
+Designed for manufacturing environments where multiple camera angles provide complementary defect information (e.g., tire inspection, surface quality assessment).
+Citation
+Built upon CS-Flow: "Fully Convolutional Cross-Scale-Flows for Image-based Defect Detection" (WACV 2022) by Rudolph et al.
 
 ## License
 
